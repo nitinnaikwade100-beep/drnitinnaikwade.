@@ -107,7 +107,7 @@ const blogs = [
     id: 4,
     title: "What is a Hybrid Neurosurgeon? The Future of Brain Surgery",
     meta: "Discover what a hybrid neurosurgeon is and why dual training in open microsurgery and endovascular interventions leads to better patient outcomes.",
-    image: "https://lh3.googleusercontent.com/pw/AP1GczO9gbL23ihtSpVBF78NCS4EzjcOzyzpQIxFNRyPoKLps2E0C39vUtiNxYpUY0NJcp1KUH8elX0xkr4zTAORjbAgsvN8uj_4eSGfnfNf5oCJBWeIVJWC=w1280",
+    image: "/hero-image.jpg",
     content: (
       <div className="space-y-4 text-slate-700 leading-relaxed">
         <h3 className="text-xl font-bold text-slate-900 font-serif">Introduction</h3>
@@ -173,7 +173,12 @@ const blogs = [
   }
 ];
 
-export default function Blogs() {
+interface BlogsProps {
+  onClose?: () => void;
+  isStandaloneModal?: boolean;
+}
+
+export default function Blogs({ onClose, isStandaloneModal = false }: BlogsProps) {
   const [selectedBlog, setSelectedBlog] = useState<typeof blogs[0] | null>(null);
 
   // Prevent body scroll when modal is open
@@ -189,39 +194,58 @@ export default function Blogs() {
   }, [selectedBlog]);
 
   return (
-    <section id="blogs" className="py-24 bg-slate-50 relative overflow-hidden">
+    <section id="blogs" className={`py-12 sm:py-20 bg-slate-50 relative overflow-hidden ${isStandaloneModal ? 'min-h-screen' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        
+        {/* Modal Header Bar when opened from navigation */}
+        {onClose && (
+          <div className="flex items-center justify-between pb-4 sm:pb-6 mb-8 sm:mb-12 border-b border-slate-200">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 sm:px-3 py-1 bg-sky-100 text-sky-800 rounded-full">
+                Medical Journal
+              </span>
+              <span className="text-slate-600 text-xs sm:text-sm font-medium hidden sm:inline">Articles &amp; Clinical Insights</span>
+            </div>
+            <button
+              onClick={onClose}
+              className="flex items-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-medium border border-slate-200 transition-colors shadow-sm"
+            >
+              ← Back to Home
+            </button>
+          </div>
+        )}
+
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-bold tracking-widest uppercase mb-4">
               Patient Education
             </div>
-            <h2 className="text-4xl font-bold text-slate-900 font-serif mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 font-serif mb-3 sm:mb-4">
               Medical <span className="text-sky-700 italic">Insights & Articles</span>
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-sm sm:text-base md:text-lg text-slate-600">
               Explore our latest articles on advanced neurological treatments, patient care, and recovery.
             </p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {blogs.map((blog, index) => (
             <motion.div
               key={blog.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer group"
               onClick={() => setSelectedBlog(blog)}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-44 sm:h-48 overflow-hidden">
                 <img 
                   src={blog.image} 
                   alt={blog.title} 
@@ -230,18 +254,18 @@ export default function Blogs() {
                 />
                 <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-300" />
               </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center text-sky-600 mb-3">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow">
+                <div className="flex items-center text-sky-600 mb-2.5">
                   <BookOpen className="w-4 h-4 mr-2" />
                   <span className="text-xs font-bold uppercase tracking-wider">Article</span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 font-serif mb-3 group-hover:text-sky-700 transition-colors line-clamp-2">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-serif mb-2.5 group-hover:text-sky-700 transition-colors line-clamp-2">
                   {blog.title}
                 </h3>
-                <p className="text-slate-600 text-sm mb-6 line-clamp-3 flex-grow">
+                <p className="text-slate-600 text-xs sm:text-sm mb-5 line-clamp-3 flex-grow leading-relaxed">
                   {blog.meta}
                 </p>
-                <div className="flex items-center text-sky-700 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center text-sky-700 font-semibold text-xs sm:text-sm mt-auto group-hover:translate-x-1 transition-transform">
                   Read Full Article <ChevronRight className="w-4 h-4 ml-1" />
                 </div>
               </div>
@@ -253,7 +277,7 @@ export default function Blogs() {
       {/* Blog Modal */}
       <AnimatePresence>
         {selectedBlog && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -262,45 +286,46 @@ export default function Blogs() {
               className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              className="relative w-full max-w-4xl max-h-[92vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10"
             >
-              <div className="relative h-64 sm:h-80 flex-shrink-0">
+              <div className="relative h-48 sm:h-72 md:h-80 flex-shrink-0">
                 <img 
                   src={selectedBlog.image} 
                   alt={selectedBlog.title} 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-transparent" />
                 <button 
                   onClick={() => setSelectedBlog(null)}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors"
+                  aria-label="Close modal"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-sky-500/20 text-sky-100 backdrop-blur-md text-xs font-bold tracking-widest uppercase mb-3 border border-sky-400/30">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                  <div className="inline-flex items-center px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-sky-500/30 text-sky-100 backdrop-blur-md text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-2 border border-sky-400/40">
                     Article
                   </div>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-serif leading-tight">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white font-serif leading-tight line-clamp-2 sm:line-clamp-none">
                     {selectedBlog.title}
                   </h2>
                 </div>
               </div>
               
-              <div className="p-6 sm:p-8 overflow-y-auto">
+              <div className="p-4 sm:p-6 md:p-8 overflow-y-auto">
                 {selectedBlog.content}
                 
                 <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <p className="text-slate-600 font-medium text-sm">Found this article helpful?</p>
+                  <p className="text-slate-600 font-medium text-xs sm:text-sm">Found this article helpful?</p>
                   <a 
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-5 py-2.5 bg-[#0A66C2] text-white rounded-full hover:bg-[#004182] transition-colors text-sm font-bold shadow-md hover:shadow-lg"
+                    className="inline-flex items-center px-4 py-2.5 sm:px-5 sm:py-2.5 bg-[#0A66C2] text-white rounded-full hover:bg-[#004182] transition-colors text-xs sm:text-sm font-bold shadow-md hover:shadow-lg min-h-[44px]"
                   >
                     <Linkedin className="w-4 h-4 mr-2 fill-current" />
                     Share on LinkedIn

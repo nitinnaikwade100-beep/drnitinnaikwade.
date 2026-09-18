@@ -16,32 +16,32 @@ export default function Footer() {
       </div>
 
       {/* Glossiform Glass Container */}
-      <div className="relative z-10 bg-white/5 backdrop-blur-[80px] border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] py-16">
+      <div className="relative z-10 bg-white/5 backdrop-blur-[80px] border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] pt-12 pb-24 sm:py-16">
         {/* Glossy highlight */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-10 sm:mb-12">
             
             {/* Left: Contact Form */}
-            <div className="lg:col-span-5 bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden group">
+            <div className="lg:col-span-5 bg-white/5 backdrop-blur-xl p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <h3 className="text-2xl font-bold text-white font-serif mb-2">Book an Appointment</h3>
-              <p className="text-slate-300 mb-6 text-sm">Fill out the form below and our team will get back to you shortly.</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-serif mb-2">Book an Appointment</h3>
+              <p className="text-slate-300 mb-5 sm:mb-6 text-xs sm:text-sm">Fill out the form below and our team will get back to you shortly.</p>
               <form className="space-y-4 relative z-10" onSubmit={(e) => e.preventDefault()}>
                 <div>
-                  <input type="text" placeholder="Your Name" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md" required />
+                  <input type="text" placeholder="Your Name" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md text-base sm:text-sm min-h-[44px]" required />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="email" placeholder="Email Address" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md" required />
-                  <input type="tel" placeholder="Phone Number" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md" required />
+                  <input type="email" placeholder="Email Address" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md text-base sm:text-sm min-h-[44px]" required />
+                  <input type="tel" placeholder="Phone Number" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all backdrop-blur-md text-base sm:text-sm min-h-[44px]" required />
                 </div>
                 <div>
-                  <textarea placeholder="How can we help you?" rows={4} className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all resize-none backdrop-blur-md" required></textarea>
+                  <textarea placeholder="How can we help you?" rows={3} className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all resize-none backdrop-blur-md text-base sm:text-sm min-h-[44px]" required></textarea>
                 </div>
-                <button type="submit" className="w-full flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transform hover:-translate-y-1 transition-all duration-300">
+                <button type="submit" className="w-full flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 text-base sm:text-lg font-bold rounded-xl text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transform hover:-translate-y-1 active:scale-98 transition-all duration-300 min-h-[48px]">
                   Book an Appointment
-                  <Send className="ml-2 w-5 h-5" />
+                  <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </form>
             </div>
@@ -124,11 +124,20 @@ export default function Footer() {
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-6 uppercase tracking-wider drop-shadow-md">Quick Links</h4>
                   <ul className="grid grid-cols-2 gap-4">
-                    {['Home', 'About', 'Services', 'Expertise', 'Gallery', 'Blogs', 'Testimonials'].map((link) => (
-                      <li key={link}>
-                        <a href={`#${link.toLowerCase()}`} className="text-slate-300 hover:text-white transition-colors flex items-center group">
+                    {[
+                      { name: 'Home', href: '#home' },
+                      { name: 'About', href: '#about' },
+                      { name: 'Second Opinion', href: '#second-opinion' },
+                      { name: 'Services', href: '#services' },
+                      { name: 'Expertise', href: '#expertise' },
+                      { name: 'Gallery', href: '#gallery' },
+                      { name: 'Blogs', href: '#blogs' },
+                      { name: 'Testimonials', href: '#testimonials' },
+                    ].map((link) => (
+                      <li key={link.name}>
+                        <a href={link.href} className="text-slate-300 hover:text-white transition-colors flex items-center group">
                           <span className="w-2 h-2 rounded-full bg-white/20 border border-white/30 group-hover:bg-sky-400 group-hover:border-sky-300 mr-3 transition-all" />
-                          {link}
+                          {link.name}
                         </a>
                       </li>
                     ))}

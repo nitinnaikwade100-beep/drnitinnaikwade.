@@ -29,39 +29,39 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 bg-slate-50">
+    <section id="faq" className="py-12 sm:py-20 lg:py-24 bg-slate-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 font-serif mb-4">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 font-serif mb-3 sm:mb-4">
             Frequently Asked <span className="text-sky-700 italic">Questions</span>
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-sm sm:text-base md:text-lg text-slate-600">
             Find answers to common questions about our procedures, consultations, and approach to care.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                className="w-full px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none min-h-[52px] active:bg-slate-50 transition-colors"
               >
-                <span className="text-lg font-medium text-slate-900 pr-4">
+                <span className="text-sm sm:text-base md:text-lg font-medium text-slate-900 pr-3 sm:pr-4">
                   {faq.question}
                 </span>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
+                <div className={`flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-sky-100 text-sky-600' : 'bg-slate-100 text-slate-500'}`}>
                   {openIndex === index ? (
-                    <ChevronUp className="w-5 h-5" />
+                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
                   ) : (
-                    <ChevronDown className="w-5 h-5" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                   )}
                 </div>
               </button>
@@ -74,7 +74,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-5 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-3 sm:pt-4">
                       {faq.answer}
                     </div>
                   </motion.div>
